@@ -28,5 +28,5 @@ function imagesTemplate(arr) {
 
 export function renderImg(hits) {
   const markup = imagesTemplate(hits);
-  ulEl.innerHTML = markup;
+  ulEl.insertAdjacentHTML('beforeend', markup);
 }
