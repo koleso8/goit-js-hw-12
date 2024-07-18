@@ -26,7 +26,11 @@ function imagesTemplate(arr) {
   return arr.map(imgTemplate).join('');
 }
 
-export function renderImg(hits) {
+export function innerImg(hits) {
+  const markup = imagesTemplate(hits);
+  ulEl.innerHTML = markup;
+}
+export function insertImg(hits) {
   const markup = imagesTemplate(hits);
   ulEl.insertAdjacentHTML('beforeend', markup);
 }
