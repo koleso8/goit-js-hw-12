@@ -17,7 +17,7 @@ function endLoader() {
 }
 
 export function searchImages(value, page) {
-  startLoader(); //_________________________loader_start
+  startLoader();
 
   const baseUrl = 'https://pixabay.com/api/';
   //__________________________________________________________________________________________params
@@ -33,7 +33,7 @@ export function searchImages(value, page) {
     },
   };
 
-  axios
+  const resolve = axios
     .get(baseUrl, params)
     .then(response => {
       if (!response) {
@@ -54,11 +54,7 @@ export function searchImages(value, page) {
             document
               .querySelector('.load-more')
               .classList.add('visually-hidden');
-            iziToast.info({
-              message:
-                "We're sorry, but you've reached the end of search results",
-              position: 'topRight',
-            });
+            iziInfo();
           }
         }
         let gallery = new SimpleLightbox('.gallery a');
@@ -74,4 +70,11 @@ export function searchImages(value, page) {
     .finally(() => {
       endLoader(); //____________________loader_remove
     });
+}
+
+function iziInfo() {
+  iziToast.info({
+    message: "We're sorry, but you've reached the end of search results",
+    position: 'topRight',
+  });
 }
