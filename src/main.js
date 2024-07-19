@@ -26,8 +26,9 @@ refs.formEl.addEventListener('submit', async evt => {
     userValue = refs.input.value.trim();
     page = 1;
 
-    if (!userValue) iziError();
-    else {
+    if (!userValue) {
+      iziError();
+    } else {
       const res = await searchImages(userValue, page);
 
       limitPage = Math.ceil(res.totalHits / 15);
@@ -70,6 +71,9 @@ refs.btnLoadMore.addEventListener('click', async () => {
 });
 
 function iziError() {
+  console.log('sdsd');
+  refs.ul.innerHTML = '';
+  refs.btnLoadMore.classList.add('visually-hidden');
   return iziToast.error({
     message: 'Please fill in the input field',
     position: 'topRight',
