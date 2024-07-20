@@ -38,9 +38,12 @@ refs.formEl.addEventListener('submit', async evt => {
       innerImg(res.hits);
       scrollBy(75);
       const lightbox = new simpleLightbox('.gallery a');
-
-      refs.btnLoadMore.classList.remove('visually-hidden');
-
+      if (res.hits.length < 15) {
+        refs.btnLoadMore.classList.add('visually-hidden');
+        iziInfo();
+      } else {
+        refs.btnLoadMore.classList.remove('visually-hidden');
+      }
       refs.formEl.addEventListener('click', e => {
         if (e.target.name !== 'text') return;
         refs.input.value = '';
@@ -68,6 +71,10 @@ refs.btnLoadMore.addEventListener('click', async () => {
   stopLoader();
   scrollBy();
   refs.btnLoadMore.classList.remove('visually-hidden');
+  if (res.hits.length < 15) {
+    refs.btnLoadMore.classList.add('visually-hidden');
+    iziInfo();
+  }
 });
 
 function iziError() {
